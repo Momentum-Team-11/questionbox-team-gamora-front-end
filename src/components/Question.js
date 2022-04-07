@@ -1,23 +1,14 @@
-import React from "react";
-import he from "he";
+// import React, { useState } from "react";
+// import he from "he";
 
-const Question = ({ question, idx, i, questions, setQuestions, currentQuestion, setCurrentQuestion }) => {
-    // const [isAnswered, setisAnswered] = useState(false);
-    // const [user, setUser] = useState("");
-    // const [createdAt, setCreatedAt] = useState("");
-    // const [favorited, setFavorited] = useState(false);
+// const Question = () => {
+//     const questionURL = "https://dj-questionbox.herokuapp.com/api/question";
+//     const [question, setQuestion] = useState([])
 
 
+//     return (
+//         
+//     );
+// };
 
-    return (
-
-<div className="questDiv">
-    
-    {/* <p>{question.question}</p> */}
-    <p>{he.decode(question.question)}</p>
-
-    </div>
-    );
-};
-
-export default Question;
+// export default Question;
