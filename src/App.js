@@ -10,8 +10,9 @@ import { QuestionList } from "./components/QuestionList";
 import './App.css';
 
 const App = () => {
-    const [username, setUsername] = useLocalStorageState('admin', '');
-    const [token, setToken] = useLocalStorageState('11b22b7796e3c1c7079b074c46a0cc137ce8b412', '');
+    // const baseURL = "https://dj-questionbox.herokuapp.com/api";
+    const [username, setUsername] = useLocalStorageState('questionBoxAdmin', '');
+    const [token, setToken] = useLocalStorageState('questionBoxToken', '');
 
     const setAuth = (username, token) => {
         setToken(token)
@@ -21,7 +22,7 @@ const App = () => {
     const isLoggedin = username && token
 
     // return (
-    //     <div className="plzwork">
+    //     <div className="plzjustwork">
     //         <Login
     //         setAuth={setAuth}
     //         isLoggedIn={isLoggedin}
@@ -33,8 +34,8 @@ const App = () => {
         <Router>
             <Routes>
                 <Route path="/" element={<QuestionList token={token} />} />
-                <Route path="questions" elements={<QuestionList token={token} />} />
-                <Route path="questions/:questionId" element={<QuestionList token={token} />} />
+                {/* <Route path="questions" elements={<QuestionList token={token} />} />
+                <Route path="questions/:questionId" element={<QuestionList token={token} />} /> */}
                 <Route path="login" element={<Login setAuth={setAuth} isLoggedin={isLoggedin} />}/>
             </Routes>
         </Router>
