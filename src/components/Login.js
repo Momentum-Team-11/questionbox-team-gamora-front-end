@@ -1,18 +1,19 @@
 import axios from "axios";
 import { useState } from "react";
-// import { requestLogin } from "../AjaxRequests";
+import { Navigate } from "react-router-dom";
 
-export const Login = () => {
+export const Login = ({ setAuth, isLoggedIn, token, setHome }) => {
     const loginURL = "https://dj-questionbox.herokuapp.com/api/auth/token/login";
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const [token, setToken] = useState("");
+    // const [home, setHome] =useState(true);
+    // const [token, setToken] = useState("");
 
     
     const handleLogin = (e) => {
         e.preventDefault();
-        setError("");
+        setError('');
         axios
             .post(loginURL, {
                 username: username,
@@ -20,19 +21,25 @@ export const Login = () => {
             })
             .then((response) => {
                 console.log(response.data);
-                setToken(username, response.data.auth_token);
+                setAuth(username, response.data.auth_token);
             })
             .catch((e) => setError(e.message));
             console.log(username);
             console.log(password);
             console.log(token);
-        };
+        }
+
+        if (isLoggedIn) {
+            return <Navigate to="/QuestionList" />
+        }
 
     return (
     <div className="loginDiv">
     <h1>Access your Box</h1>
         {error && <div className="errorDiv">{error}</div>}
-        <form onSubmit={handleLogin}>
+
+    <form onSubmit={handleLogin}>
+    <div className="usernameInput">
         <label className="usernameLabel">
             Username
         </label>
@@ -43,7 +50,9 @@ export const Login = () => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
         />
-        <div className="passwordDiv">
+    </div>
+
+    <div className="passwordDiv">
         <label className="passwordLabel">
             Password
         </label>
@@ -56,8 +65,11 @@ export const Login = () => {
         />
         </div>
         <div className="subButt">
-            <button type="submit">Log In</button>
+            <button type="submit" onClick={() => setHome(true)}>
+                Log in
+            </button>
         </div>
-        </form>
-        </div>
-    )};
+    </form>
+    </div>
+    )
+    };
