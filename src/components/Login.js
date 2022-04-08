@@ -7,8 +7,7 @@ export const Login = ({ setAuth, isLoggedIn, token, setHome }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    // const [home, setHome] =useState(true);
-    // const [token, setToken] = useState("");
+
 
     
     const handleLogin = (e) => {

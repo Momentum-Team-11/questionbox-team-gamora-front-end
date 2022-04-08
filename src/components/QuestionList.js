@@ -3,24 +3,17 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 // import Questions from "./components/Questions";
 
-export const QuestionList = ({ token }) => {
+export const QuestionList = () => {
     const [questions, setQuestions] = useState([]);
-    const [user, setUser] = useState([]);
-    const [questionUsers, setQuestionUsers] = useState([])
 
     useEffect(() => {
         axios
-        .get('https://dj-questionbox.herokuapp.com/api/user_question_list?format=api', {
-            headers: {
-                Authorization: `token ${token}`,
-            },
-        })
+        .get('https://dj-questionbox.herokuapp.com/api/questions')
         .then((response) => {
-            const questionUsers = response.data.map((obj) => obj.user)
-            setQuestionUsers(questionUsers)
+            console.log(response.data)
             setQuestions(response.data)
         })
-    }, [token])
+    }, [])
 
     return (
         <div className="questionList">

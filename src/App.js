@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 // import axios from "axios";
 import useLocalStorageState from "use-local-storage-state";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
@@ -6,13 +6,12 @@ import { Login } from "./components/Login";
 import { QuestionList } from "./components/QuestionList";
 
 // login token: "11b22b7796e3c1c7079b074c46a0cc137ce8b412"
-// import Question from "./components/Question";
+
 import './App.css';
 
 const App = () => {
     const [username, setUsername] = useLocalStorageState('admin', '');
     const [token, setToken] = useLocalStorageState('11b22b7796e3c1c7079b074c46a0cc137ce8b412', '');
-    const [home, setHome] = useState(true);
 
     const setAuth = (username, token) => {
         setToken(token)
