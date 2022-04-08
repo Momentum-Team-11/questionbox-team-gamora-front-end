@@ -1,6 +1,7 @@
 // import React from "react";
 import axios from "axios";
 import {useEffect, useState } from "react";
+import { Question } from "./Question";
 
 
 export const QuestionList = ({token}) => {
@@ -23,16 +24,16 @@ export const QuestionList = ({token}) => {
     return (
         <div className="questionList">
         <h1>this is a list of questions</h1>
-        {/* {questions.map((question, id, createdAt) => {
+        {questions.map((question, id, createdAt) => {
             return (
-                <>
-                questions={questions.question}
-                id={questions.id}
+                <Question
+                question={question}
+                id={id}
                 createdAt={createdAt}
-                </>
+                />
             )
         }
-        )} */}
+        )}
 
 
 
