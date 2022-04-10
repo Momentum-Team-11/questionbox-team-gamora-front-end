@@ -1,15 +1,15 @@
 import axios from "axios";
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 
-export const Login = ({ setAuth, isLoggedIn, token, setHome }) => {
+export const Login = ({ setAuth, isLoggedIn, token }) => {
     const loginURL = "https://dj-questionbox.herokuapp.com/api/auth/token/login";
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
 
-    
+
     const handleLogin = (e) => {
         e.preventDefault();
         setError('');
@@ -19,7 +19,7 @@ export const Login = ({ setAuth, isLoggedIn, token, setHome }) => {
                 password: password,
             })
             .then((response) => {
-                console.log(response.data);
+                console.log(response.data.username);
                 setAuth(username, response.data.auth_token);
             })
             .catch((e) => setError(e.message));
@@ -29,14 +29,16 @@ export const Login = ({ setAuth, isLoggedIn, token, setHome }) => {
         }
 
         if (isLoggedIn) {
-            return <Navigate to="/QuestionList" />
+            return <Navigate to="/QuestionList," />
         }
 
     return (
     <div className="loginDiv">
     <h1>Access your Box</h1>
+
         {error && <div className="errorDiv">{error}</div>}
 
+    <h3>log in</h3>
     <form onSubmit={handleLogin}>
     <div className="usernameInput">
         <label className="usernameLabel">
@@ -64,11 +66,14 @@ export const Login = ({ setAuth, isLoggedIn, token, setHome }) => {
         />
         </div>
         <div className="subButt">
-            <button type="submit" onClick={() => setHome(true)}>
+            <button type="submit">
                 Log in
             </button>
         </div>
     </form>
+    {/* <div className="regButt">
+        <Link to='/user'>Register</Link>
+    </div> */}
     </div>
     )
     };

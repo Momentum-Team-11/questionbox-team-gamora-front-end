@@ -1,10 +1,11 @@
 import React from "react"
 
-export const Question = ({ question }) => {
+export const Question = ({ question, user }) => {
     return (
-        <div className="questionDiv">
+        <div key={user} className="questionDiv">
             {question.id}
-            {question.question}
+            <button>{question.question}</button>
+            {question.user}
             {question.createdAt}
             {question.favorited}
         </div>
