@@ -29,7 +29,7 @@ export const Login = ({ setAuth, isLoggedIn, token }) => {
         }
 
         if (isLoggedIn) {
-            return <Navigate to="/my_questions" />
+            return <Navigate to="/userquestions" />
         }
 
     return (

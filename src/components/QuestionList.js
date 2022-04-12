@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
-import { Link, Navigate } from 'react-router-dom'
-// import { QuestionDetails } from './QuestionDetails'
-// import QuestionForm from "./QuestionForm"
+// import { Link, Navigate } from 'react-router-dom'
+
 
 //All Questions List
 export const QuestionList = ({token}) => {
@@ -26,9 +25,9 @@ useEffect(() => {
     <div className="homeDiv">
       {questions.map((question, key) => 
         <div key={key}>
-          {question.user}
+          {/* {question.user} */}
           {question.question}
-          {question.created_at}
+          {/* {question.created_at} */}
         </div>
       )}
 

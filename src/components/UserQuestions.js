@@ -24,8 +24,8 @@ useEffect(() => {
     <div className="homeDiv">
       {userQuestions.map((question, key) => 
         <div key={key}>
-          user={question.user}
-          {question.question}
+          {/* {question.user} */}
+          <h2>{question.question}</h2>
           {question.created_at}
         </div>
       )}

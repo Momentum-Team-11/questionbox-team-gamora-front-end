@@ -67,3 +67,5 @@ export const Register = ({ isLoggedIn }) => {
     </div>
   );
 }
+
+

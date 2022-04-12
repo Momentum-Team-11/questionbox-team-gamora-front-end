@@ -112,11 +112,11 @@ const App = () => {
             element={
             <QuestionForm token={token} />}/> */}
 
-        {/* <Route
-        path="/questions/:questionId"
+        <Route
+        path="details"
             element={
             <QuestionDetails
-            token={token} />}/> */}
+            token={token} />}/>
 
         <Route
         path="/login"
