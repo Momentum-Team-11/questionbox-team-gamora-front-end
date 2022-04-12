@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { Navigate, Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 export const Login = ({ setAuth, isLoggedIn, token }) => {
     const loginURL = "https://dj-questionbox.herokuapp.com/api/auth/token/login";
@@ -29,10 +29,11 @@ export const Login = ({ setAuth, isLoggedIn, token }) => {
         }
 
         if (isLoggedIn) {
-            return <Navigate to="/QuestionList," />
+            return <Navigate to="/my_questions" />
         }
 
     return (
+        
     <div className="loginDiv">
     <h1>Access your Box</h1>
 
