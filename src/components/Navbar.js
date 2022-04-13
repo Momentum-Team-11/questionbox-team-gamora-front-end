@@ -15,7 +15,7 @@ export const Navbar = ({ isLoggedIn, Logout }) => {
 
         <div>
           <Link to="/">
-            A box of Questions!
+            A box of rocks!
           </Link>
         </div>
 

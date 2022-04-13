@@ -44,7 +44,7 @@ export const QuestionForm = ({ token, isLoggedIn }) => {
     return (
     <div className="questionForm">
 
-    <h2>register</h2>
+    <h2>New Box!</h2>
         {error && <div className="error">{error}</div>}
     <form onSubmit={handleSubmit}>
         
@@ -63,6 +63,7 @@ export const QuestionForm = ({ token, isLoggedIn }) => {
           <textarea
             type='question'
             className='question'
+            placeholder='rocks go here'
             required
             value={question}
             onChange={(e) => setQuestion(e.target.value)}

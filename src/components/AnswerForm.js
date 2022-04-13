@@ -13,12 +13,13 @@ export const AnswerForm = ({ token, isLoggedIn, questionId }) => {
     const [isSubmit, setSubmit] = useState(false);
     const params = useParams()
 
-    const handleAnswer = async (e) => {
+    const handleAnswer = (e) => {
     e.preventDefault();
-        return await axios
+        axios
         .post('https://dj-questionbox.herokuapp.com/api/user_a_list', 
         {
-            reponse: answer,
+            answer: answer,
+            // user: user,
             // question: `{selected.question}`
         },
         {
@@ -54,8 +55,8 @@ export const AnswerForm = ({ token, isLoggedIn, questionId }) => {
     <h2>register</h2>
         {error && <div className="error">{error}</div>}
     <form onSubmit={handleAnswer}>
-        
-        <label htmlFor='answerUser'>Username: </label>
+
+        {/* <label htmlFor='answerUser'>Username: </label>
         <input
             type='text'
             className='text-input'
@@ -63,9 +64,10 @@ export const AnswerForm = ({ token, isLoggedIn, questionId }) => {
             required
             value={user}
             onChange={(e) => handleSubmit('answerText', e)}
-        />
+        /> */}
 
         <br></br>
+
         <label htmlFor='answer'>Your Answer: </label>
         <textarea
             type='answer'

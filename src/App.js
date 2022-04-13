@@ -5,7 +5,7 @@ import { QuestionForm } from "./components/QuestionForm";
 import { AnswerForm } from "./components/AnswerForm";
 import { QuestionList } from "./components/QuestionList";
 import { QuestionDetails } from "./components/QuestionDetails"
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import { Login } from "./components/Login";
 import { Register } from "./components/Register";
@@ -14,7 +14,8 @@ import { AnswerList } from "./components/AnswerList"
 // import { allQuestions } from "./components/GET";
 import { UserQuestions } from "./components/UserQuestions";
 import { UserAnswers } from "./components/UserAnswers";
-import { QuestionCard } from "./QuestionCard";
+import { Delete } from "./components/Delete"
+import { Home } from "./components/Home";
 // import { UserFavQuestions } from "./components/UserFavQuestions";
 // import { UserAcptAnswers } from "./components/UserAcptAnswers";
 
@@ -42,13 +43,16 @@ const App = () => {
 
 
     useEffect(() => {
-    const getTheQuestions = async () => {
-    await axios
-        .get(questionURL)
-        .then((res) => setQuestions(res.data));
+    const getTheQuestions = () => {
+    axios
+    .get(questionURL,
+        {headers: {Authorization: `Token ${token}`}}
+    )
+    .then((res) =>
+        setQuestions(res.data));
     };
     getTheQuestions();
-    }, []);
+    }, [token]);
 
 
     return (
@@ -56,90 +60,96 @@ const App = () => {
 
     <Router>
 
-    <Navbar isLoggedIn={isLoggedIn} />
+        <Navbar isLoggedIn={isLoggedIn} />
 
     <Routes>
 
-    <Route
-    path="/register"
-        element={<Register isLoggedIn={isLoggedIn} setAuth={setAuth}/>} />
+            <Route
+            path="/register"
+                element={
+                <Register isLoggedIn={isLoggedIn} setAuth={setAuth} />} />
 
-        <Route
-        path="/"
-            element={
-            <QuestionList token={token} />}/>
+            <Route
+            path="/"
+                element={
+                <QuestionList token={token} />} />
 
-        <Route
-        path="home"
-            element={
-            <QuestionList token={token} />}/>
+            <Route
+            path="home"
+                element={
+                <QuestionList token={token} />} />
 
-        <Route
-        path="questions"
-            element={
-            <QuestionList token={token} />}/>
+            <Route
+            path="questions"
+                element={
+                <QuestionList token={token} />} />
 
-        <Route
-        path="newquestion"
-            element={
-            <QuestionForm token={token} />}/>
+            <Route
+            path="newquestion"
+                element={
+                <QuestionForm token={token} />} />
 
-        <Route
-        path="/newanswer"
-            lement={
-            <AnswerForm token={token} />}/>
+            <Route
+            path="newanswer"
+                element={
+                <AnswerForm token={token} />} />
 
-        <Route
-        path="answers"
-            element={
-            <AnswerList token={token} />}/>
+            <Route
+            path="answers"
+                element={
+                <AnswerList token={token} />} />
 
-        <Route
-        path="userquestions"
-            element={
-            <UserQuestions token={token} />}/>
+            <Route
+            path="userquestions"
+                element={
+                <UserQuestions token={token} isLoggedIn={isLoggedIn} />} />
 
-        <Route
-        path="useranswers"
-            element={
-            <UserAnswers token={token} />}/>
+            <Route
+            path="useranswers"
+                element={
+                <UserAnswers token={token} isLoggedIn={isLoggedIn} />}/>
 
-        <Route
-        path="card"
-            element={
-            <QuestionCard token={token} />}/>
+            {/* <Route
+            path="card"
+                element={
+                <QuestionCard token={token} />}/> */}
 
-        {/* <Route
-        path="useracptanswers"
-            element={
-            <UserAcptAnswers token={token} />}/>
+            <Route
+            path="delete"
+                element={
+                <Delete token={token} />} />
 
-        <Route
-        path="userfavquestions"
-            element={
-            <UserFavQuestions token={token} />}/> */}
+            {/* <Route
+            path="useracptanswers"
+                element={
+                <UserAcptAnswers token={token} />}/>
 
-        <Route
-        path="details"
-            element={
-            <QuestionDetails token={token} />}/>
+            <Route
+            path="userfavquestions"
+                element={
+                <UserFavQuestions token={token} />}/> */}
 
-        <Route
-        path="/login"
-            element={
-            <Login setAuth={setAuth}
-            isLoggedIn={isLoggedIn}
-            loggedUserPk={loggedUserPk}
-            getLoggedUserPk={getLoggedUserPk} />}/>
+            <Route
+            path="/questions/:questionId/answers"
+                element={
+                <UserAnswers token={token} />} />
 
-        <Route
-        path="/logout"
-            element={
-            <Logout
-            setAuth={setAuth}
-            setToken={setToken}
-            setUsername={setUsername}
-            isLoggedIn={isLoggedIn} />}/>
+            <Route
+            path="/login"
+                element={
+                <Login setAuth={setAuth}
+                isLoggedIn={isLoggedIn}
+                loggedUserPk={loggedUserPk}
+                getLoggedUserPk={getLoggedUserPk} />} />
+
+            <Route
+            path="/logout"
+                element={
+                <Logout
+                setAuth={setAuth}
+                setToken={setToken}
+                setUsername={setUsername}
+                isLoggedIn={isLoggedIn} />} />
 
     </Routes>
     </Router>
