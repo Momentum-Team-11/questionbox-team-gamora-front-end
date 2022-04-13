@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
+import { QuestionForm } from "./QuestionForm";
 // import { Link, Navigate } from 'react-router-dom'
 
 
 //All Questions List
 export const QuestionList = ({token}) => {
-const [questions, setQuestions] = useState([])
+  const [questions, setQuestions] = useState([]);
+
 
 useEffect(() => {
     axios
@@ -21,16 +23,16 @@ useEffect(() => {
 
   if (!questions) return null;
 
+
     return (
     <div className="homeDiv">
-      {questions.map((question, key) => 
-        <div key={key}>
-          {/* {question.user} */}
+      {questions.map((question, id) => 
+        <div questionId={id}>
+          {question.user}
           {question.question}
           {/* {question.created_at} */}
+          
         </div>
       )}
-
-      {/* <Navigate to="newquestion">As a Question!</Navigate> */}
     </div>
 )}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import useLocalStorageState from "use-local-storage-state";
 import { QuestionForm } from "./components/QuestionForm";
+import { AnswerForm } from "./components/AnswerForm";
 import { QuestionList } from "./components/QuestionList";
 import { QuestionDetails } from "./components/QuestionDetails"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -13,8 +14,9 @@ import { AnswerList } from "./components/AnswerList"
 // import { allQuestions } from "./components/GET";
 import { UserQuestions } from "./components/UserQuestions";
 import { UserAnswers } from "./components/UserAnswers";
-import { UserFavQuestions } from "./components/UserFavQuestions";
-import { UserAcptAnswers } from "./components/UserAcptAnswers";
+import { QuestionCard } from "./QuestionCard";
+// import { UserFavQuestions } from "./components/UserFavQuestions";
+// import { UserAcptAnswers } from "./components/UserAcptAnswers";
 
 const App = () => {
     const [questions, setQuestions] = useState([]);
@@ -83,6 +85,11 @@ const App = () => {
             <QuestionForm token={token} />}/>
 
         <Route
+        path="/newanswer"
+            lement={
+            <AnswerForm token={token} />}/>
+
+        <Route
         path="answers"
             element={
             <AnswerList token={token} />}/>
@@ -98,6 +105,11 @@ const App = () => {
             <UserAnswers token={token} />}/>
 
         <Route
+        path="card"
+            element={
+            <QuestionCard token={token} />}/>
+
+        {/* <Route
         path="useracptanswers"
             element={
             <UserAcptAnswers token={token} />}/>
@@ -105,18 +117,12 @@ const App = () => {
         <Route
         path="userfavquestions"
             element={
-            <UserFavQuestions token={token} />}/>
-
-        {/* <Route
-        path="/ask"
-            element={
-            <QuestionForm token={token} />}/> */}
+            <UserFavQuestions token={token} />}/> */}
 
         <Route
         path="details"
             element={
-            <QuestionDetails
-            token={token} />}/>
+            <QuestionDetails token={token} />}/>
 
         <Route
         path="/login"
@@ -126,11 +132,6 @@ const App = () => {
             loggedUserPk={loggedUserPk}
             getLoggedUserPk={getLoggedUserPk} />}/>
 
-        {/* <Route
-        path="/register"
-            element={
-            <Register isLoggedIn={isLoggedIn} />}/> */}
-
         <Route
         path="/logout"
             element={
@@ -139,24 +140,6 @@ const App = () => {
             setToken={setToken}
             setUsername={setUsername}
             isLoggedIn={isLoggedIn} />}/>
-
-        {/* <Route
-        path="/my_questions"
-            element={
-            <UserQuestions
-            setAuth={setAuth}
-            setToken={setToken}
-            setUsername={setUsername}
-            isLoggedIn={isLoggedIn} />}/> */}
-
-        {/* <Route
-        path="/my_answers"
-            element={
-            <UserAnswers
-            setAuth={setAuth}
-            setToken={setToken}
-            setUsername={setUsername}
-            isLoggedIn={isLoggedIn} />}/> */}
 
     </Routes>
     </Router>

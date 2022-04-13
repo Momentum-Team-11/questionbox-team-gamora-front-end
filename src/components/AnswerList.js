@@ -10,7 +10,7 @@ const [answers, setAnswers] = useState([])
 
 useEffect(() => {
     axios
-    .get("https://dj-questionbox.herokuapp.com/api/answer/", {
+    .get("https://dj-questionbox.herokuapp.com/api/answer", {
         headers: {Authorization: `Token ${token}`}
     })
     .then((response) => {
@@ -27,7 +27,7 @@ useEffect(() => {
       {answers.map((answer, key) => 
         <div key={key}>
           {answer.user}
-          {answer.answer}
+          <h2>{answer.answer}</h2>
           {answer.created_at}
         </div>
       )}
