@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
-// import { QuestionList } from "./QuestionList"
-// import { UserAnswers } from "./UserAnswers"
 import { Navigate, Link, Params } from "react-router-dom";
 import { Card, Media, Heading, Content, Button, Container, Notification } from 'react-bulma-components';
-// import { QuestionCard } from "./QuestionCard";
 
 
 //User Questions List
@@ -24,15 +21,15 @@ useEffect(() => {
       })
     }, [token]);
 
-  if (isLoggedIn) {
+  // if (isLoggedIn) {
 
-  }
+  // }
 
   return (
     <>
     <div className="columns is-mobile mt-6 mb-6">
       <div className="column is-half is-offset-one-quarter">
-      <Heading>This is <em>{username}</em>'s box of rocks!</Heading> 
+      <Heading>This is your very own box of rocks!</Heading> 
       </div>
     </div>
 
@@ -42,24 +39,24 @@ useEffect(() => {
       <Container mb='5' className="question-list container-box">
       <Card style={{ width: 800, margin: 'auto' }}>
         <Card.Content>
-          <Media>
+          {/* <Media>
           <Media.Item>
             <Heading size={4}>{question.user}</Heading>
             <Heading subtitle size={6}>
             {question.created_at}
             </Heading>
           </Media.Item>
-        </Media>
+        </Media> */}
         <Content>
         <strong>{question.question}</strong>
           <br />
-          <Container>
+          {/* <Container>
             <Notification color="info-light" mt="3" mb="3">
               {question.question}
             </Notification>
-            </Container>
+            </Container> */}
         <Button size="small">
-        <Link to={`/question/${questionId}/answers`}>
+        <Link to={`/answers/*`}>
         Click for more 
         </Link></Button>
         </Content>

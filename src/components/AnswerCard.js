@@ -1,4 +1,4 @@
-import { Link, Params } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Card, Media, Heading, Content, Button, Container, Notification } from 'react-bulma-components';
 
 
@@ -24,7 +24,7 @@ export const AnswerCard = ({ user, answered_at , title, answer, questionId }) =>
               {answer}
             </Notification>
             </Container>
-        <Button size="small" color="primary">
+        <Button size="small" color="warning">
         <Link to={`/question/${questionId}/answers`}>
         See original question 
         </Link></Button>

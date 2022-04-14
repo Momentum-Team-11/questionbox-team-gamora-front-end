@@ -5,7 +5,7 @@ import { QuestionForm } from "./components/QuestionForm";
 import { AnswerForm } from "./components/AnswerForm";
 import { QuestionList } from "./components/QuestionList";
 import QuestionDetails from "./components/QuestionDetails"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useParams } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import { Login } from "./components/Login";
 import { Register } from "./components/Register";
@@ -13,15 +13,16 @@ import { Logout } from "./components/Logout";
 import { AnswerList } from "./components/AnswerList" 
 import { Profile } from "./components/Profile";
 import { UserAnswers } from "./components/UserAnswers";
-import { Delete } from "./components/Delete"
+// import { Delete } from "./components/Delete"
 
 
 const App = () => {
     const [questions, setQuestions] = useState([]);
-    const [selected, setSelected] = useState(null);
+    // const [selected, setSelected] = useState(null);
     const [loggedUserPk, setLoggedUserPk] = useLocalStorageState('questionBoxUserPk', '');
     const [token, setToken] = useLocalStorageState('questionBoxToken', '');
     const [username, setUsername] = useLocalStorageState('questionBoxUsername', '');
+    const {questionId} = useParams();
 
 
     const questionURL = "https://dj-questionbox.herokuapp.com/api/question"
@@ -104,10 +105,10 @@ const App = () => {
                 element={
                 <UserAnswers token={token} isLoggedIn={isLoggedIn} />}/>
 
-            <Route
+            {/* <Route
             path="delete"
                 element={
-                <Delete token={token} />} />
+                <Delete token={token} />} /> */}
 
             {/* <Route
             path="useracptanswers"
@@ -124,6 +125,7 @@ const App = () => {
                 element={
                 <QuestionDetails
                 token={token}
+                setAuth={setAuth}
                 />} />
 
             <Route

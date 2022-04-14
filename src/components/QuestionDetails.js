@@ -4,17 +4,22 @@ import axios from "axios";
 import { AnswerForm } from "./AnswerForm";
 import { useParams } from "react-router-dom";
 import { AnswerList } from "./AnswerList";
-import { Link } from "react-router-dom";
+import { QuestionList } from "./QuestionList";
+import { Link, Navigate } from "react-router-dom";
 import { Container, Notification, Section, Box, Heading, Card, Media, Content, Button } from 'react-bulma-components';
 
 
 
-const QuestionDetails = ({ token, username, answer }) => {
+const QuestionDetails = ({ token, username }) => {
     const [question, setQuestion] = useState([]);
     const [answers, setAnswers] = useState([]);
     // const [isSubmit, setSubmit] = useState(false);
     const [acceptedResponse, setAcceptedResponse] = useState(null)
     const {questionId} = useParams();
+    const [answer, setAnswer] = useState("");
+    const [error, setError] = useState("");
+    const [isSubmit, setSubmit] = useState(false);
+
 
 
     useEffect(() => {
@@ -30,6 +35,39 @@ const QuestionDetails = ({ token, username, answer }) => {
     }, [questionId, acceptedResponse, token, username])
 
 
+
+    const handleAnswer = (e) => {
+      e.preventDefault();
+          axios
+          .post('https://dj-questionbox.herokuapp.com/api/user_a_list', 
+          {
+              response: answer,
+          },
+          {
+              headers: {Authorization: `Token ${token}`},
+          })
+          .then((res) => {
+              console.log(res.data)
+              setAnswer('')
+              // setSubmit(true);
+              console.log(isSubmit)
+          })
+          .catch((e) => setError(e.message))
+      }
+  
+      const handleSubmit = (inputType, e) => {
+          if (inputType === 'answerText') {
+              setAnswer(e.target.value)
+          }
+      }
+  
+  
+      // if (isSubmit) {
+      // console.log("Submitted!")
+      // return <Navigate to='/useranswers' />
+      // }
+
+
     return (
 <>
       <Button><Link to="/">Back to all questions</Link></Button>
@@ -39,7 +77,7 @@ const QuestionDetails = ({ token, username, answer }) => {
       
       <Section style={{ width: '65%', margin: 'auto' }} > 
       <Card style={{
-      border: '2px dotted gray'
+      border: '1.75px dotted black'
     }}>
         <Card.Content>
           <Media>
@@ -52,7 +90,7 @@ const QuestionDetails = ({ token, username, answer }) => {
             </Heading>
           </Media.Item>
         </Media>
-     
+
         <strong>{question.title}</strong>
           <br />
           <Container>
@@ -67,7 +105,7 @@ const QuestionDetails = ({ token, username, answer }) => {
 
   <Section style={{ width:'65%', margin: 'auto' }}>    
       <Box >
-      {answers.map((answer, idx) => 
+      {answers.map((answer, id) => 
         <Media key={answer.id}renderAs="article">
           <Media.Item align="left">
           </Media.Item>
@@ -82,7 +120,7 @@ const QuestionDetails = ({ token, username, answer }) => {
 
                 <br />
 
-            {answer.accepted && <Notification className="is-danger is-light mr-6 p-3"><strong>Thanks Bestie!</strong></Notification>}
+            {/* {answer.accepted && <Notification className="is-danger is-light mr-6 p-3"><strong>Thanks Bestie!</strong></Notification>} */}
 
             {(!question.accepted_response && (username === question.user) &&
             <AnswerList
@@ -108,10 +146,24 @@ const QuestionDetails = ({ token, username, answer }) => {
           </Media.Item>
           <Media.Item id="answer-text" align="center">
           
-          <AnswerForm
-                questionId={question.id}
-                answer={answer}
-          />
+          <h2>got a new rock for the box?</h2>
+        {/* {error && <div className="error">{error}</div>} */}
+    <form onSubmit={handleAnswer}>
+
+        <br></br>
+
+        <label htmlFor='answer'></label>
+        <textarea
+            type='answer'
+            className='answer'
+            placeholder='rock goes here'
+            required
+            value={answer}
+            onChange={(e) => handleSubmit('answerText', e)}
+        />
+        < button color="primary" type='submit'>Submit!</button>
+    </form>
+
           </Media.Item>
         </Media>
       </Box>

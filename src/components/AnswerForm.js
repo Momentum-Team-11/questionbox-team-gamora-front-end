@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export const AnswerForm = ({ token }) => {
 
-    // const qFormURL = "https://dj-questionbox.herokuapp.com/api/user_q_list";
+    const qFormURL = "https://dj-questionbox.herokuapp.com/api/user_q_list";
     const [answer, setAnswer] = useState("");
     const [question, setQuestion] = useState("");
     // const [user, setUser] = useState("");
@@ -18,8 +18,7 @@ export const AnswerForm = ({ token }) => {
         axios
         .post('https://dj-questionbox.herokuapp.com/api/user_a_list', 
         {
-            answer: answer,
-            question: question
+            response: answer,
         },
         {
             headers: {Authorization: `Token ${token}`},
@@ -39,9 +38,9 @@ export const AnswerForm = ({ token }) => {
         }
     }
 
-    // if (isLoggedIn) {
-    // return <Navigate to='/' />
-    // }
+    // // if (isLoggedIn) {
+    // // return <Navigate to='/' />
+    // // }
 
     if (isSubmit) {
     console.log("Submitted!")
@@ -52,7 +51,7 @@ export const AnswerForm = ({ token }) => {
     <div className="answerForm">
 
     <h2>got a new rock for the box?</h2>
-        {error && <div className="error">{error}</div>}
+        {/* {error && <div className="error">{error}</div>} */}
     <form onSubmit={handleAnswer}>
 
         <br></br>

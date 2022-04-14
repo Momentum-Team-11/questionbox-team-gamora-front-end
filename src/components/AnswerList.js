@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import axios from "axios"
 // import { QuestionForm } from "./QuestionForm";
 import { Link } from 'react-router-dom'
+import { Container, Notification, Section, Box, Heading, Card, Media, Content, Button } from 'react-bulma-components';
 
 
 
@@ -24,16 +25,30 @@ useEffect(() => {
   if (!answers) return null;
 
 
+  
+
+
     return (
     <div className="homeDiv">
 
-      {answers.map((answer, id, key) => {
+      {answers.map((answer, key) => {
         const answerId = answer.id;
         const username = answer.user
         return (
-      <div key={id}>
-          {answer.user}
-          {answer.answer}
+      <div key={key}>
+    <Content>
+        {username}
+          <br />
+    <Container>
+    <Notification color="info-light" mt="3" mb="3">
+        <strong>{answer.answer}</strong>
+            </Notification>
+            </Container>
+    <Button size="small">
+      <Link to={'questions'}>
+        See original question</Link>
+    </Button>
+        </Content>
 
       </div>
         )

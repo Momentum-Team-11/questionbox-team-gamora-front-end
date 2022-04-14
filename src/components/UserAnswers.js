@@ -25,7 +25,7 @@ useEffect(() => {
 
     return (
 <>
-    <div className="header-home">
+    <div className="userAnswersDiv">
       <h1>This is a list of the user's answers. </h1>
       
     </div>
@@ -39,7 +39,7 @@ useEffect(() => {
           <Media.Item>
             <Heading size={4}>{answer.user}</Heading>
             <Heading subtitle size={6}>
-            {answer.date_asked}
+            {answer.created_at}
             </Heading>
           </Media.Item>
         </Media>
@@ -52,7 +52,7 @@ useEffect(() => {
             </Notification>
             </Container>
         <Button size="small">
-        <Link to={`/question/${questionId}/answers`}>
+        <Link to={'/'}>
         See original question 
         </Link></Button>
         </Content>
