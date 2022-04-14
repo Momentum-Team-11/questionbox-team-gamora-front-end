@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
-import { Navigate, Link, Params } from "react-router-dom";
-import { Card, Media, Heading, Content, Button, Container, Notification } from 'react-bulma-components';
+import { Link } from "react-router-dom";
+import { Card, Heading, Content, Button, Container } from 'react-bulma-components';
 
 
 //User Questions List
-export const Profile = ({token, username, isLoggedIn, questionId}) => {
+export const Profile = ({token}) => {
 const [questions, setQuestions] = useState([])
 
 
@@ -21,9 +21,6 @@ useEffect(() => {
       })
     }, [token]);
 
-  // if (isLoggedIn) {
-
-  // }
 
   return (
     <>
@@ -39,22 +36,10 @@ useEffect(() => {
       <Container mb='5' className="question-list container-box">
       <Card style={{ width: 800, margin: 'auto' }}>
         <Card.Content>
-          {/* <Media>
-          <Media.Item>
-            <Heading size={4}>{question.user}</Heading>
-            <Heading subtitle size={6}>
-            {question.created_at}
-            </Heading>
-          </Media.Item>
-        </Media> */}
+
         <Content>
         <strong>{question.question}</strong>
           <br />
-          {/* <Container>
-            <Notification color="info-light" mt="3" mb="3">
-              {question.question}
-            </Notification>
-            </Container> */}
         <Button size="small">
         <Link to={`/answers/*`}>
         Click for more 

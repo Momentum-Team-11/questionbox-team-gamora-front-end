@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react"
 import axios from "axios"
 // import { QuestionForm } from "./QuestionForm";
 import { Link } from 'react-router-dom'
-import { Container, Notification, Section, Box, Heading, Card, Media, Content, Button } from 'react-bulma-components';
+import { Container, Notification, Content, Button } from 'react-bulma-components';
 
 
 
 //All Answers List
-export const AnswerList = ({token, questionId, question}) => {
+export const AnswerList = ({token}) => {
   const [answers, setAnswers] = useState([]);
 
 useEffect(() => {
@@ -32,12 +32,10 @@ useEffect(() => {
     <div className="homeDiv">
 
       {answers.map((answer, key) => {
-        const answerId = answer.id;
-        const username = answer.user
         return (
       <div key={key}>
     <Content>
-        {username}
+        {answer.user}
           <br />
     <Container>
     <Notification color="info-light" mt="3" mb="3">

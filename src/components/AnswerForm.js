@@ -1,20 +1,15 @@
 import { Navigate} from 'react-router-dom'
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 export const AnswerForm = ({ token }) => {
 
-    const qFormURL = "https://dj-questionbox.herokuapp.com/api/user_q_list";
     const [answer, setAnswer] = useState("");
-    const [question, setQuestion] = useState("");
-    // const [user, setUser] = useState("");
-    const [error, setError] = useState("");
+    // const [error, setError] = useState("");
     const [isSubmit, setSubmit] = useState(false);
-    const {questionId} = useParams();
 
-    const handleAnswer = (e) => {
-    e.preventDefault();
+    const handleAnswer = (error) => {
+    error.preventDefault();
         axios
         .post('https://dj-questionbox.herokuapp.com/api/user_a_list', 
         {
@@ -26,21 +21,16 @@ export const AnswerForm = ({ token }) => {
         .then((res) => {
             console.log(res.data)
             setAnswer('')
-            // setSubmit(true);
             console.log(isSubmit)
         })
-        .catch((e) => setError(e.message))
+        // .catch((error) => setError(error.message))
     }
 
-    const handleSubmit = (inputType, e) => {
+    const handleSubmit = (inputType, error) => {
         if (inputType === 'answerText') {
-            setAnswer(e.target.value)
+            setSubmit(error.target.value)
         }
     }
-
-    // // if (isLoggedIn) {
-    // // return <Navigate to='/' />
-    // // }
 
     if (isSubmit) {
     console.log("Submitted!")
@@ -63,7 +53,7 @@ export const AnswerForm = ({ token }) => {
             placeholder='rock goes here'
             required
             value={answer}
-            onChange={(e) => handleSubmit('answerText', e)}
+            onChange={(error) => handleSubmit('answerText', error)}
         />
         < button color="primary" type='submit'>Submit!</button>
     </form>

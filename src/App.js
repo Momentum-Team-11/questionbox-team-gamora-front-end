@@ -5,7 +5,7 @@ import { QuestionForm } from "./components/QuestionForm";
 import { AnswerForm } from "./components/AnswerForm";
 import { QuestionList } from "./components/QuestionList";
 import QuestionDetails from "./components/QuestionDetails"
-import { BrowserRouter as Router, Routes, Route, useParams } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import { Login } from "./components/Login";
 import { Register } from "./components/Register";
@@ -22,7 +22,6 @@ const App = () => {
     const [loggedUserPk, setLoggedUserPk] = useLocalStorageState('questionBoxUserPk', '');
     const [token, setToken] = useLocalStorageState('questionBoxToken', '');
     const [username, setUsername] = useLocalStorageState('questionBoxUsername', '');
-    const {questionId} = useParams();
 
 
     const questionURL = "https://dj-questionbox.herokuapp.com/api/question"
@@ -48,7 +47,7 @@ const App = () => {
         setQuestions(res.data));
     };
     getTheQuestions();
-    }, [token]);
+    }, [token, questions]);
 
 
     return (

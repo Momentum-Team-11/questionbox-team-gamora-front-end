@@ -1,11 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { AnswerForm } from "./AnswerForm";
 import { useParams } from "react-router-dom";
 import { AnswerList } from "./AnswerList";
-import { QuestionList } from "./QuestionList";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Container, Notification, Section, Box, Heading, Card, Media, Content, Button } from 'react-bulma-components';
 
 
@@ -13,11 +11,10 @@ import { Container, Notification, Section, Box, Heading, Card, Media, Content, B
 const QuestionDetails = ({ token, username }) => {
     const [question, setQuestion] = useState([]);
     const [answers, setAnswers] = useState([]);
-    // const [isSubmit, setSubmit] = useState(false);
     const [acceptedResponse, setAcceptedResponse] = useState(null)
     const {questionId} = useParams();
     const [answer, setAnswer] = useState("");
-    const [error, setError] = useState("");
+    // const [error, setError] = useState("");
     const [isSubmit, setSubmit] = useState(false);
 
 
@@ -52,12 +49,12 @@ const QuestionDetails = ({ token, username }) => {
               // setSubmit(true);
               console.log(isSubmit)
           })
-          .catch((e) => setError(e.message))
+          // .catch((e) => setError(e.message))
       }
   
       const handleSubmit = (inputType, e) => {
           if (inputType === 'answerText') {
-              setAnswer(e.target.value)
+              setSubmit(e.target.value)
           }
       }
   

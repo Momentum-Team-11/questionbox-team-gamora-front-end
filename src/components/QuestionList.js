@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 // import { QuestionForm } from "./QuestionForm";
-import { Link, Params } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Card, Media, Heading, Content, Button, Container } from 'react-bulma-components';
 
 
