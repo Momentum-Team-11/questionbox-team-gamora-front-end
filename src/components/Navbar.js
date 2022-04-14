@@ -15,7 +15,7 @@ export const Navbar = ({ isLoggedIn, Logout }) => {
 
         <div>
           <Link to="/">
-            A box of rocks!
+            <center>A box of rocks!</center>
           </Link>
         </div>
 
@@ -33,17 +33,23 @@ export const Navbar = ({ isLoggedIn, Logout }) => {
           <>
           <div>
             <div onClick={toggleNav}>
-              Menu
+              <button>Menu</button>
             </div>
               {(toggleMenu && (
             <div>
               <div>
-              <Link to='/userquestions'>My Questions</Link>
-            </div>
-            <div>
-              <Link to="/useranswers">My Answers</Link>
+                <Link to="/profile">Profile</Link>
               </div>
-            </div>
+              <div>
+                <Link to="/">My Questions</Link>
+              </div>
+              <div>
+                <Link to="/newquestion">Ask a Question</Link>
+              </div>
+              <div>
+                <Link to="/useranswers">My Answers</Link>
+              </div>
+              </div>
               )
               )}
               </div>

@@ -3,15 +3,15 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-export const AnswerForm = ({ token, isLoggedIn, questionId }) => {
+export const AnswerForm = ({ token }) => {
 
     // const qFormURL = "https://dj-questionbox.herokuapp.com/api/user_q_list";
     const [answer, setAnswer] = useState("");
     const [question, setQuestion] = useState("");
-    const [user, setUser] = useState("");
+    // const [user, setUser] = useState("");
     const [error, setError] = useState("");
     const [isSubmit, setSubmit] = useState(false);
-    const params = useParams()
+    const {questionId} = useParams();
 
     const handleAnswer = (e) => {
     e.preventDefault();
@@ -19,8 +19,7 @@ export const AnswerForm = ({ token, isLoggedIn, questionId }) => {
         .post('https://dj-questionbox.herokuapp.com/api/user_a_list', 
         {
             answer: answer,
-            // user: user,
-            // question: `{selected.question}`
+            question: question
         },
         {
             headers: {Authorization: `Token ${token}`},
@@ -52,26 +51,17 @@ export const AnswerForm = ({ token, isLoggedIn, questionId }) => {
     return (
     <div className="answerForm">
 
-    <h2>register</h2>
+    <h2>got a new rock for the box?</h2>
         {error && <div className="error">{error}</div>}
     <form onSubmit={handleAnswer}>
 
-        {/* <label htmlFor='answerUser'>Username: </label>
-        <input
-            type='text'
-            className='text-input'
-            id='user'
-            required
-            value={user}
-            onChange={(e) => handleSubmit('answerText', e)}
-        /> */}
-
         <br></br>
 
-        <label htmlFor='answer'>Your Answer: </label>
+        <label htmlFor='answer'></label>
         <textarea
             type='answer'
             className='answer'
+            placeholder='rock goes here'
             required
             value={answer}
             onChange={(e) => handleSubmit('answerText', e)}
